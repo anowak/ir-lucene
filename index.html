@@ -28,14 +28,88 @@
 		<div class="reveal">
 			<div class="slides">
 
-				<section>
+        <section>
           <h2>Introduction to Information Retrieval with Lucene</h2>
 					<p>
             Artur Nowak<br>
             <img src="img/logo.png" style="background: none; border: none;"><br>
+          </p>
+          <p>
 						The slide deck is accessible at <a href="http://synaway.github.com/ir-lucene">http://synaway.github.com/ir-lucene</a>
+            <small>(source at <a href="http://github.com/synaway/ir-lucene">http://github.com/synaway/ir-lucene</a>)</small>
 					</p>
+          <aside class="notes">2</aside>
 				</section>
+
+        <section>
+          <h2>The objectives</h2>
+          <ul>
+            <li class="fragment">Get a solid grasp of the basic information retrieval concepts</li>
+            <li class="fragment">Learn what to keep an eye on while implementing a search solution</li>
+            <li class="fragment">Get excited about what is possible with Lucene</li>
+            <li class="fragment">Be ready to explore IR world on your own!</li>
+          </ul>
+          <aside class="notes">5</aside>
+        </section>
+
+        <section>
+          <section>
+            <h2>Information retrieval</h2>
+            <blockquote cite="http://en.wikipedia.org/wiki/Information_retrieval">
+              Information retrieval is the activity of obtaining information resources relevant to 
+              an information need from a collection of information resources
+            </blockquote>
+            <small>&mdash;<a href="http://en.wikipedia.org/wiki/Information_retrieval">Wikipedia</a></small>
+            <aside class="notes">8</aside>
+          </section>
+          <section>
+            <h3>Information need?</h3>
+            <img src="img/let-me-google.jpg"><br>
+            <small>&mdash;<a href="http://www.datamation.com/cnews/article.php/12035_3910601_2/Tech-Comics-All-Tests-Have-Crashed.htm">Olivier Widder</a></small>
+          </section>
+          <section>
+            <h3>What is a query then?</h3>
+            <img src="img/fiat.jpg"><br>
+            <small>&mdash;<a href="http://www.netcarshow.com/fiat/1972-126/1280x960/wallpaper_03.htm">netcarshow.com</a></small>
+          </section>
+          <section>
+            <img src="img/buick.png"><br>
+            <small>&mdash;Ebay</small>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Document</h2>
+            <img src="img/document.png"><br>
+            <small>&mdash;Google Images</small>
+            <aside class="notes">12</aside>
+          </section>
+          <section>
+            <img src="img/book.png"><br>
+            <small>&mdash;Google Images</small>
+          </section>
+          <section>
+            <h3>Document is a basic, atomic unit of retrieval</h3>
+            <ul>
+              <li>Documents are typically retrieved by id from the storage (e.g. database)</li>
+              <li>All of the content of a document is ranked together</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Documents have fields</h3>
+            <p>(defined in the schema)</p>
+            <img src="img/ogres.jpg"><br>
+            <small>&mdash;Google Images</small>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Precision and Recall</h2>
+            <aside class="notes">17</aside>
+          </section>
+        </section>
 			</div>
 		</div>
 
