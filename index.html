@@ -18,6 +18,11 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+    <!-- TeX rendering -->
+    <script type="text/javascript"
+      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -69,6 +74,10 @@
           </section>
           <section>
             <h3>What is a query then?</h3>
+            <img src="img/ten_yr.jpg"><br>
+            <small>&mdash;Google Images</small>
+          </section>
+          <section>
             <img src="img/fiat.jpg"><br>
             <small>&mdash;<a href="http://www.netcarshow.com/fiat/1972-126/1280x960/wallpaper_03.htm">netcarshow.com</a></small>
           </section>
@@ -80,10 +89,30 @@
 
         <section>
           <section>
+            <h1>Lucene is an IR library</h1>
+            <img src="img/lucene.png"><br>
+            <small>&mdash;<a href="http://lucene.apache.org">Lucene homepage</a></small>
+            <aside class="notes">12</aside>
+          </section>
+          <section>
+            <h3>Lucene history</h3>
+            <ul>
+              <li class="fragment">Created by Doug Cutting in 1999</li>
+              <li class="fragment">First open source release in 2000 on SourceForge</li>
+              <li class="fragment">Apache Jakarta project from June 2002, top-level Apache project since February 2005</li>
+              <li class="fragment">Numerous ports and bindings exist: C#, C++, Python, Ruby, PHP, Delphi</li>
+              <li class="fragment">Wrapped in Apache Solr, ElasticSearch, Compass, Hibernate Search</li>
+              <li class="fragment">Spun off notable projects, including Nutch, Tika, Hadoop and Mahout</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
             <h2>Document</h2>
             <img src="img/document.png"><br>
             <small>&mdash;Google Images</small>
-            <aside class="notes">12</aside>
+            <aside class="notes">14</aside>
           </section>
           <section>
             <img src="img/book.png"><br>
@@ -99,15 +128,23 @@
           <section>
             <h3>Documents have fields</h3>
             <p>(defined in the schema)</p>
-            <img src="img/ogres.jpg"><br>
-            <small>&mdash;Google Images</small>
+            <div class="fragment">
+              <img src="img/ogres.jpg"><br>
+              <small>&mdash;Google Images</small>
+            </div>
           </section>
         </section>
 
         <section>
           <section>
             <h2>Precision and Recall</h2>
+            <p>$$\textrm{Precision} := \frac{|Rel \cap Res|}{|Res|}$$</p>
+            <p>$$\textrm{Recall} :=  \frac{|Rel \cap Res|}{|Rel|}$$</p>
             <aside class="notes">17</aside>
+          </section>
+          <section>
+            <img src="img/swing.jpg">
+            <small>&mdash;Google Images</small>
           </section>
         </section>
 			</div>
