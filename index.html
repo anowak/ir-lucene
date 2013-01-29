@@ -156,6 +156,11 @@
 					</section>
         </section>
 
+        <section>
+          <img src="img/diagram.jpg">
+          <small>&mdash;<a href="http://ankitk.files.wordpress.com/2010/05/lucenediagram.jpg">http://ankitk.wordpress.com</a></small>
+        </section>
+
 				<section>
 					<section>
 						<h2>From raw data to a document collection</h2>
@@ -257,6 +262,90 @@
 						<aside class="notes">35</aside>
 					</section>
 				</section>
+
+        <section>
+          <section>
+            <h3>Inverted index</h3>
+            <img src="img/inverted_index.jpg"><br>
+            <small>&mdash;developer.apple.com</small>
+						<aside class="notes">36</aside>
+          </section>
+          <section>
+						<ul>
+              <li class="fragment">Transfer time per byte is between 0.01 and 0.02 μs</li>
+              <li class="fragment">But the average seek time of the disk head is about 5 ms!</li>
+              <li class="fragment">Dictionary stored as a sorted list &ndash; allows fast wildcard queries</li>
+              <li class="fragment">We need second index to be kept in memory to minimize the number of disk seeks (.tii and .tis files)</li>
+              <li class="fragment">Inserts are extremely costly!</li>
+              <li class="fragment">Solution: use B-tree or hashtable at the time of index construction and then convert it to sorted dictionary representation</li>
+              <li class="fragment">Create a small index in memory as long as it fits (or <code>maxBufferedDocs</code> parameter in Lucene is exceeded)</li>
+              <li class="fragment">Merge it at the end &ndash; algorithm similar to merge sort</li>
+            </ul>
+						<aside class="notes">40</aside>
+          </section>
+          <section>
+						<ul>
+              <li class="fragment">What about the updates and removals?</li>
+              <li class="fragment">Do 'marking as removed' insted of real delete</li>
+              <li class="fragment">That decreses performance and skews the rating scores for documents!</li>
+              <li class="fragment">Why not delay merging phase to always have some "index in construction"?</li>
+              <li class="fragment">That leads to Lucene segments and <code>MergePolicy</code></li>
+              <li class="fragment">Also performs "garbage collection"</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Famous <code>mergeFactor</code></h2>
+            <img style="background: white;" src="img/segments.png"><br>
+            <small>&mdash;searchworkings.org</small>
+          </section>
+          <section>
+            <iframe width="853" height="480" src="http://www.youtube.com/embed/YW0bOvLp72E?rel=0" frameborder="0" allowfullscreen></iframe>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Ranked retrieval</h2>
+          </section>
+          <section>
+            <h2>Vector space model (SMART)</h2>
+            <p>$$score(q, d) = \frac{\vec{V}_q \cdot \vec{V}_d}{|\vec{V}_q| \cdot |\vec{V}_d|}$$</p>
+          </section>
+          <section>
+            <h2>TF-IDF</h2>
+            <p>$$\textrm{idf}_t = \log \frac{N}{df_t}$$</p>
+            <p>$$\textrm{tf-idf}_{t,d} = \textrm{tf}_{t,d} \cdot \textrm{idf}_t$$</p>
+          </section>
+          <section>
+						<ul>
+              <li class="fragment">Different variants of TF-IDF scheme</li>
+              <li class="fragment">Scope and Verbosity hypotheses</li>
+              <li class="fragment">OKAPI BM25F - current golden standard in academia</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>If you can not measure it, you cannot improve it</h2>
+						<ul>
+              <li class="fragment">Mean Average Precision, P@5, P@10</li>
+              <li class="fragment">Normalized Discounted Cumulative Gain: http://www.ebaytechblog.com/2010/11/10/measuring-search-relevance/</li>
+            </ul>
+          </section>
+          <section>
+            <blockquote>
+               As I said, it’s important to be a gamer when you work in QA. It’s not so much about your gaming skill as it is the range of skills. A good QA team has to consist of different types of people. We have to have casuals and hardcores on board. If we have people that beat every game, get every achievement in it – then we have only one point of view. If you find a part of any game to be always absurdly difficult, be sure that it was tested only by hardcores.
+            </blockquote>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Q & A</h2>
+            <p>BTW, what subjects would you like to hear about? Chef anyone?</p>
+          </section>
+        </section>
 			</div>
 		</div>
 
