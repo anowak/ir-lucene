@@ -101,7 +101,7 @@
               <li class="fragment">First open source release in 2000 on SourceForge</li>
               <li class="fragment">Apache Jakarta project from June 2002, top-level Apache project since February 2005</li>
               <li class="fragment">Numerous ports and bindings exist: C#, C++, Python, Ruby, PHP, Delphi</li>
-              <li class="fragment">Wrapped in Apache Solr, ElasticSearch, Compass, Hibernate Search</li>
+              <li class="fragment">Wrapped in Apache Solr, ElasticSearch, Zoie, Compass, Hibernate Search...</li>
               <li class="fragment">Spun off notable projects, including Nutch, Tika, Hadoop and Mahout</li>
             </ul>
           </section>
@@ -146,7 +146,117 @@
             <img src="img/swing.jpg">
             <small>&mdash;Google Images</small>
           </section>
+					<section>
+						<h2>Right balance depends on the application</h2>
+						<ul>
+							<li class="fragment">Gather all the studies on adverse effects of certain drug</li>
+							<li class="fragment">QA: who was the first president of the Republic of Poland?</li>
+							<li class="fragment">What are some highly popular sites using Lucene?</li>
+						</ul>
+					</section>
         </section>
+
+				<section>
+					<section>
+						<h2>From raw data to a document collection</h2>
+						<ol>
+							<li class="fragment">Character encoding translation</li>
+							<li class="fragment">Content extraction</li>
+							<li class="fragment">Language detection</li>
+							<li class="fragment">Tokenization</li>
+							<li class="fragment">Token normalization</li>
+							<aside class="notes">18</aside>
+						</ol>
+					</section>
+					<section>
+						<h2>Tokens & terms</h2>
+						<div class="fragment">
+							<img src="img/token.png">
+							<small>&mdash;South Park Wikia</small>
+						</div>
+					</section>
+					<section>
+						<p>Tokenizer &ndash; a function converting input text into a list of tokens</p>
+						<p>Token &ndash; product of running a tokenizer on the input text</p>
+						<p>Type &ndash; class of tokens</p>
+						<p>Term &ndash; representation of group of tokens (often, whole type) along with some info about the tokens (stored in postings list)</p>
+					</section>
+					<section>
+						<h2>Tokenizer</h2>
+						<p>In Lucene, it is represented with a subclass of <code>org.apache.lucene.analysis.Tokenizer</code> and returns <code>TokenStream</code></p>
+						<p>Examples of tokenizers:</p>
+						<ul>
+							<li class="fragment"><code>KeywordTokenizer</code></li>
+							<li class="fragment"><code>WhitespaceTokenizer</code></li>
+							<li class="fragment"><code>LetterTokenizer</code></li>
+							<li class="fragment"><code>StandardTokenizer</code> (handles cases like "don't", "I.B.M.", e-mail addresses...)</li>
+						</ul>
+					</section>
+					<section>
+						<ul>
+							<li class="fragment">Tokenization is applied to the query as well</li>
+							<li class="fragment">What about "New York" or "Jagiellonian University"?</li>
+							<li class="fragment">Compound nouns (Softwareentwicklungsprozess)?</li>
+							<li class="fragment">Eastern languages?</li>
+						</ul>
+						<aside class="notes">23</aside>
+					</section>
+					<section>
+						<h2>Three forms of token normalization</h2>
+						<ul>
+							<li class="fragment">Canonicalization (case-folding, "I.B.M", "I.B.M.", "IBM" -> "IBM")</li>
+							<li class="fragment">Double indexing (lorry &asymp; truck, but "monster truck" &#8800; "monster lorry")</li>
+							<li class="fragment">Query expansion</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Example of query expansion</h2>
+						<table style="width: 100%">
+							<tr><th style="width: 30%">Query term</th><th>Terms it gets expanded into</th></tr>
+							<tr><td>window</td><td>window, windows</td></tr>
+							<tr><td>windows</td><td>window, windows, Windows</td></tr>
+							<tr><td>Windows</td><td>Windows</td></tr>
+						</table>
+						<aside class="notes">27</aside>
+					</section>
+					<section>
+						<h2>Important canonicalization use cases</h2>
+						<ul>
+							<li class="fragment">Romanization (naïve -> naive)</li>
+							<li class="fragment">Truecasing (U.S. -> us?)</li>
+							<li class="fragment">Handling of (e.g. telephone) numbers</li>
+							<li class="fragment">Handling of dates (may require complex solutions like HeidelTime)</li>
+							<li class="fragment">Stemming and lemmatization</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Porter stemmer</h2>
+						<div class="fragment">
+							<img src="img/porter.jpg"><br>
+							<small>&mdash;portery.pl</small>
+						</div>
+					</section>
+					<section>
+						<h2>Porter stemmer in action</h2>
+						<ul>
+							<li>dog, dogs, dog's, dogs' -> dog</li>
+							<li>marine, marines, marina, marinas, marinate, marinated, ... -> marin</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Stop words</h2>
+						<ul>
+							<li class="fragment">Zipf's law &ndash; the frequency of a word in a large-enough text corpus is inversely proportional to its rank in the frequency table</li>
+							<li class="fragment">Big decrease in index size</li>
+							<li class="fragment">To be or not to be?</li>
+							<li class="fragment">Stopping may be applied solely to queries</li> 
+					</section>
+					<section>
+						<h2>Token normalization in Lucene</h2>
+						<p>In Lucene preprocessing pipepline, <code>TokenStream</code> produced by the tokenizer is then processed by a chain of <code>TokenFilters</code>. Many built-in filters exists and it is very easy to write custom filters. Filters are often grouped into <code>Analyzers</code></p>
+						<aside class="notes">35</aside>
+					</section>
+				</section>
 			</div>
 		</div>
 
